@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Auth UI</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='index.css') }}" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<div class="container">
+
+  <!-- Flash Messages -->
+  {% with messages = get_flashed_messages() %}
+  {% if messages %}
+    <div class="flash-messages">
+      {% for message in messages %}
+        <div class="alert">{{ message }}</div>
+      {% endfor %}
+    </div>
+  {% endif %}
+  {% endwith %}
+
+  <!-- SIGN UP -->
+  <div class="card" id="signup-card">
+    <div class="card-header">
+      <span class="active" id="signup-tab">Sign Up</span>
+      <span id="signin-tab">Sign In</span>
+    </div>
+
+    <form class="card-body" method="POST" action="{{ url_for('register') }}">
+      <h2>Create An Account</h2>
+
+      <div class="input-group">
+        <input type="text" name="name" placeholder="Full Name" required>
+      </div>
+
+      <div class="input-group">
+        <input type="email" name="email" placeholder="Email" required>
+      </div>
+
+      <div class="input-group">
+        <input type="password" name="password" placeholder="Password" required>
+        <span class="eye">👁</span>
+      </div>
+
+      <button class="primary-btn" type="submit">Sign Up</button>
+
+      <p class="divider">Or sign up with</p>
+
+      <div class="social">
+        <button class="google" type="button">G Google</button>
+        <button class="facebook" type="button">f Facebook</button>
+      </div>
+    </form>
+  </div>
+
+  <!-- SIGN IN -->
+  <div class="card" id="login-card">
+    <div class="card-header">
+      <span id="signup-tab2">Sign Up</span>
+      <span class="active" id="signin-tab2">Sign In</span>
+    </div>
+
+    <form class="card-body" method="POST" action="{{ url_for('login') }}">
+      <h2>Welcome Back !</h2>
+
+      <div class="input-group">
+        <input type="email" name="email" placeholder="Email" required>
+      </div>
+
+      <div class="input-group">
+        <input type="password" name="password" placeholder="Password" required>
+        <span class="eye">👁</span>
+      </div>
+
+      <div class="options">
+        <label><input type="checkbox" name="remember"> Remember Password</label>
+        <a href="#">Forgot Password?</a>
+      </div>
+
+      <button class="primary-btn" type="submit">Sign In</button>
+
+      <p class="divider">Or sign in with</p>
+
+      <div class="social">
+        <button class="google" type="button">G Google</button>
+        <button class="facebook" type="button">f Facebook</button>
+      </div>
+    </form>
+  </div>
+
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+  const signupCard = document.getElementById('signup-card');
+  const loginCard = document.getElementById('login-card');
+
+  // Jinja value safely passed to JS
+  const currentPage = "{{ page | default('login') }}";
+
+  if (currentPage === 'register') {
+    signupCard.style.display = 'block';
+    loginCard.style.display = 'none';
+  } else {
+    signupCard.style.display = 'none';
+    loginCard.style.display = 'block';
+  }
+
+  // Toggle tabs
+  document.getElementById('signup-tab').onclick =
+  document.getElementById('signup-tab2').onclick = () => {
+    signupCard.style.display = 'block';
+    loginCard.style.display = 'none';
+  };
+
+  document.getElementById('signin-tab').onclick =
+  document.getElementById('signin-tab2').onclick = () => {
+    signupCard.style.display = 'none';
+    loginCard.style.display = 'block';
+  };
+
+  function showMessage(message) {
+    const existing = document.querySelector('.flash-messages');
+    if (existing) existing.remove();
+
+    const div = document.createElement('div');
+    div.className = 'flash-messages';
+    div.innerHTML = `<div class="alert">${message}</div>`;
+    document.querySelector('.container').prepend(div);
+  }
+
+  // Signup AJAX
+  const signupForm = document.querySelector('#signup-card form');
+  if (signupForm) {
+    signupForm.addEventListener('submit', function (e) {
+      e.preventDefault();
+      fetch('{{ url_for("register") }}', {
+        method: 'POST',
+        body: new FormData(this),
+        headers: { 'X-Requested-With': 'XMLHttpRequest' }
+      })
+      .then(r => r.json())
+      .then(d => d.success ? location.href = d.redirect : showMessage(d.message))
+      .catch(() => showMessage('An error occurred.'));
+    });
+  }
+
+  // Login AJAX
+  const loginForm = document.querySelector('#login-card form');
+  if (loginForm) {
+    loginForm.addEventListener('submit', function (e) {
+      e.preventDefault();
+      fetch('{{ url_for("login") }}', {
+        method: 'POST',
+        body: new FormData(this),
+        headers: { 'X-Requested-With': 'XMLHttpRequest' }
+      })
+      .then(r => r.json())
+      .then(d => d.success ? location.href = d.redirect : showMessage(d.message))
+      .catch(() => showMessage('An error occurred.'));
+    });
+  }
+});
+</script>
+
+</body>
+</html>

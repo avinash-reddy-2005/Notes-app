@@ -1,0 +1,130 @@
+/* Contact Page Styles */
+
+.contact-hero {
+    text-align: center;
+    padding: 60px 20px;
+    color: #fff;
+}
+
+.contact-hero h1 {
+    font-size: 3rem;
+    margin-bottom: 15px;
+}
+
+.contact-hero p {
+    font-size: 1.1rem;
+    color: #e0e0e0;
+}
+
+.contact-wrapper {
+    max-width: 1000px;
+    margin: 0 auto 80px;
+    padding: 0 20px;
+    display: grid;
+    grid-template-columns: 1fr 1.5fr;
+    gap: 40px;
+}
+
+/* Info Side */
+.contact-info {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.info-card {
+    background: rgba(255, 255, 255, 0.9);
+    padding: 30px;
+    border-radius: 20px;
+    border: 1px solid rgba(255,255,255,0.5);
+}
+
+.info-card h3 {
+    color: #1d235c;
+    margin-bottom: 10px;
+    font-size: 1.2rem;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.info-card p, .info-card a {
+    color: #555;
+    text-decoration: none;
+    line-height: 1.5;
+}
+
+.info-card a:hover {
+    color: #1d235c;
+}
+
+/* Form Side */
+.contact-form-container {
+    background: #fff;
+    padding: 40px;
+    border-radius: 25px;
+    box-shadow: 0 15px 40px rgba(0,0,0,0.1);
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 500;
+    color: #333;
+}
+
+.form-group input,
+.form-group textarea {
+    width: 100%;
+    padding: 14px;
+    border: 1px solid #ddd;
+    border-radius: 12px;
+    background: #fcfcfc;
+    font-size: 14px;
+    transition: all 0.3s ease;
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+    border-color: #1d235c;
+    background: #fff;
+    outline: none;
+    box-shadow: 0 0 0 4px rgba(29, 35, 92, 0.1);
+}
+
+.submit-btn {
+    width: 100%;
+    padding: 16px;
+    background: #1d235c;
+    color: #fff;
+    border: none;
+    border-radius: 12px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+.submit-btn:hover {
+    background: #2e3476;
+}
+
+@media (max-width: 800px) {
+    .contact-wrapper {
+        grid-template-columns: 1fr;
+    }
+    
+    .contact-info {
+        flex-direction: row;
+        flex-wrap: wrap;
+    }
+    
+    .info-card {
+        flex: 1;
+        min-width: 250px;
+    }
+}

@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+
+{% block title %}Pricing - Notes App{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{{ url_for('static', filename='pricing.css') }}">
+{% endblock %}
+
+{% block content %}
+<div class="pricing-hero">
+    <h1>Simple, Transparent Pricing</h1>
+    <p>No hidden fees. No credit card required. Just pure productivity.</p>
+</div>
+
+<div class="pricing-container">
+    <div class="pricing-card">
+        <div class="plan-name">Community Edition</div>
+        <div class="price">$0<span>/forever</span></div>
+        <p class="plan-description">Everything you need to master your workflow.</p>
+        
+        <ul class="features-list">
+            <li><span class="check-icon">✓</span> Unlimited Notes</li>
+            <li><span class="check-icon">✓</span> Sync Across Devices</li>
+            <li><span class="check-icon">✓</span> Advanced Search</li>
+            <li><span class="check-icon">✓</span> Dark Mode</li>
+            <li><span class="check-icon">✓</span> 24/7 Community Support</li>
+            <li><span class="check-icon">✓</span> Regular Updates</li>
+        </ul>
+
+        <a href="{{ url_for('register') }}" class="cta-button">Get Started for Free</a>
+    </div>
+</div>
+{% endblock %}

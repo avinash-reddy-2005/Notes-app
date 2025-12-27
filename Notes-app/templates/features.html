@@ -1,0 +1,75 @@
+{% extends 'base.html' %}
+
+{% block title %}Features - Notes App{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{{ url_for('static', filename='features.css') }}">
+{% endblock %}
+
+{% block content %}
+<section class="features-hero">
+    <h1>Experience the Future of Note-Taking</h1>
+    <p>Seamlessly organized, effortlessly secure, and beautifully designed. Unlock your productivity potential.</p>
+</section>
+
+<section class="features-grid">
+    <div class="feature-card">
+        <div class="feature-icon">🔒</div>
+        <h3>Secure by Default</h3>
+        <p>End-to-end encryption ensures your thoughts remain private. Only you have access to your keys.</p>
+    </div>
+    <div class="feature-card">
+        <div class="feature-icon">⚡</div>
+        <h3>Lightning Fast</h3>
+        <p>Built for speed. Instant sync across all your devices so you never lose a moment of inspiration.</p>
+    </div>
+    <div class="feature-card">
+        <div class="feature-icon">🎨</div>
+        <h3>Beautiful Design</h3>
+        <p>A distraction-free interface that helps you focus on what matters most: your ideas.</p>
+    </div>
+    <div class="feature-card">
+        <div class="feature-icon">📱</div>
+        <h3>Cross Platform</h3>
+        <p>Access your notes from anywhere. Web, mobile, or desktop - we've got you covered.</p>
+    </div>
+    <div class="feature-card">
+        <div class="feature-icon">🔍</div>
+        <h3>Smart Search</h3>
+        <p>Find exactly what you're looking for in milliseconds with our advanced full-text search.</p>
+    </div>
+    <div class="feature-card">
+        <div class="feature-icon">🌙</div>
+        <h3>Dark Mode</h3>
+        <p>Easy on the eyes. Toggle between light and dark themes to suit your environment.</p>
+    </div>
+</section>
+
+<section class="feature-showcase">
+    <div class="showcase-item">
+        <div class="showcase-content">
+            <h2>Organize with Tags</h2>
+            <p>Don't let your ideas get lost. Use our flexible tagging system to categorize and filter your notes. Create nested tags for even more granular control using our intuitive drag-and-drop interface.</p>
+        </div>
+        <div class="showcase-visual">
+            🏷️
+        </div>
+    </div>
+
+    <div class="showcase-item reversed">
+        <div class="showcase-content">
+            <h2>Collaborate in Real-Time</h2>
+            <p>Share your notes with teammates and work together in real-time. See cursor positions, comments, and changes as they happen. Perfect for meetings and brainstorming sessions.</p>
+        </div>
+        <div class="showcase-visual">
+            👥
+        </div>
+    </div>
+</section>
+
+<section class="features-cta">
+    <h2>Ready to get started?</h2>
+    <p>Join thousands of users who have transformed the way they take notes.</p>
+    <a href="{{ url_for('register') }}" class="btn primary" style="font-size: 1.2rem; padding: 12px 30px;">Sign Up Now</a>
+</section>
+{% endblock %}

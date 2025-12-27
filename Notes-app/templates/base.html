@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}App{% endblock %}</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+
+    <!-- Global CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='base.css') }}">
+    {% block extra_css %}{% endblock %}
+</head>
+<body>
+
+    <!-- HEADER -->
+    <header class="app-header">
+        <div class="logo">
+            <span class="logo-mark">N</span>
+            <span class="logo-text">Notes</span>
+        </div>
+
+        <nav class="nav-links">
+            <a href="{{ url_for('index') }}">Home</a>
+            <a href="{{ url_for('features') }}">Features</a>
+            <a href="{{ url_for('pricing') }}">Pricing</a>
+            <a href="{{ url_for('contact') }}">Contact</a>
+        </nav>
+
+        <div class="auth-actions">
+            {% if current_user.is_authenticated %}
+                <a href="{{ url_for('dashboard') }}" class="btn ghost">Dashboard</a>
+                <a href="{{ url_for('logout') }}" class="btn primary">Logout</a>
+            {% else %}
+                <a href="{{ url_for('login') }}" class="btn ghost">Login</a>
+                <a href="{{ url_for('register') }}" class="btn primary">Sign Up</a>
+            {% endif %}
+        </div>
+    </header>
+
+    <!-- MAIN CONTENT -->
+    <main class="app-content">
+        {% block content %}{% endblock %}
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="app-footer">
+        <div class="footer-top">
+            <div class="footer-brand">
+                <h3>Notes</h3>
+                <p>Minimal. Fast. Secure notes for modern users.</p>
+            </div>
+
+            <div class="footer-links">
+                <div>
+                    <h4>Product</h4>
+                    <a href="{{ url_for('features') }}">Features</a>
+            <a href="{{ url_for('pricing') }}">Pricing</a>
+            <a href="{{ url_for('contact') }}">Contact</a>
+                </div>
+                <div>
+                    <h4>Company</h4>
+                    <a href="#">About</a>
+                    <a href="#">Careers</a>
+                    <a href="{{ url_for('contact') }}">Contact</a>
+                </div>
+                <div>
+                    <h4>Legal</h4>
+                    <a href="#">Privacy</a>
+                    <a href="#">Terms</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            © 2025 Notes App. All rights reserved.
+        </div>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+
+{% block title %}
+    {% if note %}Edit Note{% else %}New Note{% endif %} - Notes App
+{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{{ url_for('static', filename='create_note.css') }}">
+{% endblock %}
+
+{% block content %}
+<div class="editor-container">
+    <div class="editor-header">
+        <h2>{% if note %}Editing{% else %}Drafting{% endif %}</h2>
+    </div>
+    
+    <form method="POST" class="note-form">
+        <div class="form-group">
+            <input type="text" 
+                   name="title" 
+                   class="title-input" 
+                   placeholder="Note Title" 
+                   value="{{ note.title if note else '' }}" 
+                   required 
+                   autofocus>
+        </div>
+        
+        <div class="form-group">
+            <textarea name="content" 
+                      class="content-input" 
+                      placeholder="Start writing your thoughts..." 
+                      required>{{ note.content if note else '' }}</textarea>
+        </div>
+        
+        <div class="editor-actions">
+            <a href="{{ url_for('dashboard') }}" class="btn-cancel">Discard</a>
+            <button type="submit" class="btn-save">
+                <span>{% if note %}Save Changes{% else %}Save Note{% endif %}</span>
+            </button>
+        </div>
+    </form>
+</div>
+{% endblock %}

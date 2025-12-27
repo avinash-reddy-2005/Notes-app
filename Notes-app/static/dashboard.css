@@ -1,0 +1,182 @@
+/* Dashboard Styles */
+
+.dashboard-container {
+    max-width: 1200px;
+    margin: 40px auto;
+    padding: 0 20px;
+    min-height: 80vh;
+}
+
+/* Header */
+.dashboard-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 40px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid rgba(255,255,255,0.2);
+}
+
+.dashboard-header h1 {
+    color: #fff;
+    font-size: 2rem;
+    font-weight: 600;
+}
+
+.stats-badge {
+    background: rgba(255, 255, 255, 0.1);
+    padding: 8px 16px;
+    border-radius: 20px;
+    font-size: 0.9rem;
+    color: #e0e0e0;
+    backdrop-filter: blur(5px);
+}
+
+/* Notes Grid */
+.notes-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 25px;
+}
+
+.note-card {
+    background: rgba(255, 255, 255, 0.9);
+    border-radius: 16px;
+    padding: 25px;
+    height: 250px;
+    display: flex;
+    flex-direction: column;
+    transition: all 0.3s ease;
+    border: 1px solid rgba(255,255,255,0.5);
+    position: relative;
+    overflow: hidden;
+    text-decoration: none; /* Make card clickable if we want */
+}
+
+.note-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+    background: #fff;
+}
+
+.note-card h3 {
+    font-size: 1.25rem;
+    color: #1d235c;
+    margin-bottom: 12px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.note-excerpt {
+    color: #555;
+    font-size: 0.95rem;
+    line-height: 1.6;
+    flex-grow: 1;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 5;
+    line-clamp: 5;
+    -webkit-box-orient: vertical;
+    margin-bottom: 20px;
+}
+
+.card-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: auto;
+    padding-top: 15px;
+    border-top: 1px solid #f0f0f0;
+}
+
+.note-date {
+    font-size: 0.8rem;
+    color: #999;
+}
+
+.card-actions {
+    display: flex;
+    gap: 8px;
+    opacity: 0.6;
+    transition: opacity 0.2s;
+}
+
+.note-card:hover .card-actions {
+    opacity: 1;
+}
+
+.action-btn {
+    text-decoration: none;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    transition: background 0.2s;
+    font-size: 1.1rem;
+}
+
+.action-btn:hover {
+    background: rgba(0,0,0,0.05);
+}
+
+.action-btn.delete:hover {
+    background: rgba(255,0,0,0.1);
+    color: #ff4d4d;
+}
+
+/* Empty State */
+.no-notes {
+    grid-column: 1 / -1;
+    text-align: center;
+    padding: 80px 20px;
+    color: #fff;
+}
+
+.no-notes h3 {
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+    font-weight: 500;
+}
+
+.no-notes p {
+    color: #e0e0e0;
+    margin-bottom: 30px;
+}
+
+/* Floating Action Button (FAB) */
+.fab {
+    position: fixed;
+    bottom: 40px;
+    right: 40px;
+    width: 60px;
+    height: 60px;
+    background: #ff9f1a;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    font-size: 30px;
+    box-shadow: 0 4px 20px rgba(255, 159, 26, 0.4);
+    text-decoration: none;
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    z-index: 100;
+}
+
+.fab:hover {
+    transform: scale(1.1);
+    box-shadow: 0 8px 30px rgba(255, 159, 26, 0.5);
+}
+
+@media (max-width: 768px) {
+    .dashboard-header h1 {
+        font-size: 1.5rem;
+    }
+    .fab {
+        bottom: 20px;
+        right: 20px;
+    }
+}
